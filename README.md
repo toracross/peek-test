@@ -28,6 +28,4 @@ This project took just under 3 hours from start to finish (start time: 11:15AM E
 
 ## So what does it look like?
 
-Here's a preview!
-
-<video src="peek.mp4" width="320" height="200" controls preload></video>
+Glad you asked! I've attached a small video sample, check out peek.mp4 for more details.

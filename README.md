@@ -1,57 +1,33 @@
-# The Peek iOS Coding Challenge
+# peek-test: Peek Test GraphQL Demo App
+Peek iOS Test App Repository.
 
+This repository contains the demo of the Peek iOS take home challenge. This was a very fun exercise and a good introduction into the magic of GraphQL. *More information on GraphQL can be found here: https://graphql.org/*
 
-<img src="https://cdn.worldvectorlogo.com/logos/graphql.svg" width="200" height="200" /><img src="https://openclipart.org/download/50143/clipart-0114.svg" width="50" height="50" /><img src="https://d2z5w7rcu7bmie.cloudfront.net/assets/images/logo.png" width="200" height="200" />
+## Let's dive into the project.
+This exercise was to fulfill the following criteria:<br/>
 
+•On launch: <br/>
+Perform a query search against Github's GraphQL API and return a list of repositories containing the string "GraphQL"
 
+Display the returned repositories to the user with the provided information:<br/>
+  -The name of the repo <br/>
+  -The owner login name<br/>
+  -The owner avatar<br/>
+  -The number of stars<br/>
 
-## Goal
-
-Build a small iPhone application that queries Github to get repositories that mention `GraphQL`.
-The result are to be displayed in a list view with pagination support.
-The project should **not** take more than half a day of coding time - remember it’s a demo and not a fully featured app!
-Please list in your README file the things you would have added/done differently if you had more time.
-
-## Services
-The application will interface with the [Github V4 API](https://developer.github.com/v4)
-
-- [Perform a search](https://developer.github.com/v4/query)
-- [Search Result](https://developer.github.com/v4/object/searchresultitemconnection/)
-
-
-## Requirements
-
-Initial launch: fetch the initial set of repos that contain the string `graphql`
-
-Infinite scrolling: Fetch the next set of repository.
-
-Each table cell should contain:
-
-- The name of the repo
-- The owner login name
-- The owner avatar
-- The number of stars
-
-## Setup
-This project uses [CocoaPods](https://cocoapods.org/) and leverages the [Apollo iOS client](https://github.com/apollographql/apollo-ios) to fetch data from a GraphQL API. In order to pull data from Github API, please generate an access [token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/).
-
-The `githubToken` varaible will need to be updated the `GraphQLClientProtocol.swift` file.
-
-## Libraries
-You are allowed to used third party libraries when appropriate.
-Use your good judgement and please justify the use (when necessary) of any third party library.
-
-## Specifications
-Language: Swift 4.2
-Development environment: Xcode 10 or later
-Target: iOS 12 or later
-
-## Submission
-When finished, create a public Github repository with your solution.
-Don’t hesitate to include any documentation or ramblings to help us better understand your submission and the coding choices you made.
+•On Interaction: <br/>
+Pagination: Once the user scrolls down far enough in the list of repos, fetch the next set of repos and display it to the user, effectively: infinite scrolling.
  
- 
-Finally, there are plenty of details that are purposefully vague here, because we want to give you leeway to be creative and show us your way of doing things. 
+## Some project details and development thoughts.
+GraphQL is very interesting and extremely useful, to say the least. It's a framework that I regret not having used sooner/incorporated into my previous applications as it allows you to query *exactly* what you need without needing to return the entire contents of an API call. It does take a little bit of setup, but I feel it is well worth the time.
 
-## Question?
-If you have any questions, do not hesitate at all to ask (tony@peek.com).
+I structured the application in a way that it should be easy to trace what decisions were made where.<br/> For example: GithubQueryType <br/>
+I created an enum, GithubQueryType, in order to prevent having two separate functions with nearly identical bodies, in the case of fetching the initial repositories versus additional repositories. This enum also takes in an endCursorKey parameter when needed should the developer want to fetch additional repos. This helps reduce code bloat and the number of functions that are nearly identical because of one or two factors.
+
+This project took just under 3 hours from start to finish (start time: 11:15AM EST, current time as of writing this: 2:05PM EST). I spent the last 30 minutes of the project on polish, including a few things such as a cascading reload animation for the UITableView, as well as some error handling and adding developer QOL functions.
+
+## So what does it look like?
+
+Here's a preview!
+
+<video src="peek.mp4" width="320" height="200" controls preload></video>
